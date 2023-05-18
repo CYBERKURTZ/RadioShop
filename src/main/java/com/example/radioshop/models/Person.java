@@ -1,0 +1,84 @@
+package com.example.radioshop.models;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
+import java.util.List;
+import java.util.Objects;
+
+@Entity
+@Table(name = "Person") //указываем, что подключаемся к таблице Person
+public class Person {
+    @Id
+    @Column(name = "id") //указываем к какому полю коннектимся
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @NotEmpty(message = "Логин не может быть пустым") //валидация на пустоту
+    @Size(min = 5, max = 100, message = "Логин должен быть от 5 до 100 символов") //валидация по размеру
+    @Column(name = "login") //указываем к какому полю коннектимся
+    private String login;
+
+    @NotEmpty(message = "Пароль не может быть пустым") //валидация на пустоту
+    @Column(name = "password") //указываем к какому полю коннектимся
+    private String password;
+
+    @Column(name = "role") //указываем к какому полю коннектимся
+    private String role;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    //СВЯЗЬ ТОВАРОВ С ПОКУПАТЕЛЯМИ В КОРЗИНЕ
+    @ManyToMany()
+    @JoinTable(name = "product_cart", joinColumns = @JoinColumn(name = "person_id"),inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<Product> productList;
+
+    //СВЯЗЬ ПОКУПАТЕЛЯ С ЗАКАЗОМ
+    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
+    private List<Order> orderList;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return id == person.id && Objects.equals(login, person.login) && Objects.equals(password, person.password);
+    }
+
+    //МЕТОД ДЛЯ ПРЕОБРАЗОВАНИЯ ОБЪЕКТА КЛАССА В ЧИСЛО
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, password);
+    }
+}
