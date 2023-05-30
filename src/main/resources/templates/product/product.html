@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Cписок товаров</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Главная страница магазина</h1>
-<a href="/authentication">Вернуться на страницу входа</a>
+<h1>RADIO Shop</h1>
+<a href="/authentication" class="btn btn-primary">Вернуться на страницу входа</a>
 <br>
 <h3>Cортировка, поиск, фильтрация</h3>
 <form th:method="POST" th:action="@{/product/search}">
@@ -46,7 +49,7 @@
 
             <br>
             <br>
-            <input type="submit" value="Найти">
+            <input type="submit" value="Найти" class="btn btn-primary">
         </div>
     </fieldset>
 </form>
@@ -61,12 +64,25 @@
 </div>
 <hr>
 <h3>Доступные товары: </h3>
-<div th:each="product : ${products}">
-    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="200px">
-    <br>
-    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-    <hr>
+<!--<div th:each="product : ${products}">-->
+<!--    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="200px">-->
+<!--    <br>-->
+<!--    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>-->
+<!--    <p th:text="'Цена: ' + ${product.getPrice()}"></p>-->
+<!--    <hr>-->
+<!--</div>-->
+
+<div class="card" th:each="product : ${products}">
+    <div class="card-header">
+        <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="200px">
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Краткая информация:</h5>
+        <a class="card-title" th:text="${product.getTitle()}"></a>
+        <p class="card-text" th:text="'Цена: ' + ${product.getPrice()}"></p>
+        <a th:href="@{/product/info/{id}(id=${product.getId()})}" class="btn btn-primary">Подробно</a>
+    </div>
 </div>
+
 </body>
 </html>

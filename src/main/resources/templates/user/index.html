@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Личный кабинет</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <form method="POST" th:action="@{/logout}">
-    <button type="submit">Выйти из личного кабинета</button>
+    <button type="submit" class="btn btn-primary">Выйти из личного кабинета</button>
 </form>
 <br>
 <form method="GET" th:action="@{/cart}">
-    <button type="submit">Корзина</button>
+    <button type="submit" class="btn btn-primary">Корзина</button>
 </form>
 <br>
 <form method="GET" th:action="@{/orders}">
-    <input type="submit" value="Заказы">
+    <input type="submit" value="Заказы" class="btn btn-primary">
 </form>
 <h1>Личный кабинет</h1>
 <h3>Cортировка, поиск, фильтрация</h3>
@@ -55,7 +58,7 @@
 
             <br>
             <br>
-            <input type="submit" value="Найти">
+            <input type="submit" value="Найти" class="btn btn-primary">
         </div>
     </fieldset>
 </form>
@@ -71,13 +74,27 @@
 </div>
 <hr>
 <h3>Доступные товары: </h3>
-<div th:each="product : ${products}">
-    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="200px">
-    <br>
-    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-    <a th:href="@{/cart/add/{id}(id=${product.getId()})}">Добавить товар в корзину</a>
-    <hr>
+<!--<div th:each="product : ${products}">-->
+<!--    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="200px">-->
+<!--    <br>-->
+<!--    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>-->
+<!--    <p th:text="'Цена: ' + ${product.getPrice()}"></p>-->
+<!--    <a th:href="@{/cart/add/{id}(id=${product.getId()})}">Добавить товар в корзину</a>-->
+<!--    <hr>-->
+<!--</div>-->
+
+<div class="card" th:each="product : ${products}">
+    <div class="card-header">
+        <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="200px">
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Краткая информация:</h5>
+        <a class="card-title" th:text="${product.getTitle()}"></a>
+        <p class="card-text" th:text="'Цена: ' + ${product.getPrice()}"></p>
+        <a th:href="@{/product/info/{id}(id=${product.getId()})}" class="btn btn-primary">Подробно</a>
+        <a th:href="@{/cart/add/{id}(id=${product.getId()})}" class="btn btn-primary">Добавить товар в корзину</a>
+    </div>
 </div>
+
 </body>
 </html>

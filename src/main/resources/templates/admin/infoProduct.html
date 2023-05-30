@@ -3,30 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Все товары</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <h3>Просмотр всех товаров</h3>
 <hr>
 <form method="POST" th:action="@{/logout}">
-    <button type="submit">Выйти из личного кабинета</button>
+    <button type="submit" class="btn btn-primary">Выйти из личного кабинета</button>
 </form>
 <hr>
-<a href="/admin">Назад в личный кабинет администратора</a>
-<br>
-<a href="/admin/product/add">Добавить новый товар</a>
+<a href="/admin" class="btn btn-primary">Назад в личный кабинет администратора</a>
+<br><br>
+<a href="/admin/product/add" class="btn btn-primary">Добавить новый товар</a>
 <hr>
-<div th:each="product : ${products}">
-    <p th:text="'Наименование: ' + ${product.getTitle()}"></p>
-    <p th:text="'Категория: ' + ${product.getCategory().getTitle()}"></p>
-    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="100px">
-    <br>
-    <a th:href="@{/product/info/{id}(id=${product.getId()})}">Подробная информация о товаре</a>
-    <br>
-    <a th:href="@{/admin/product/edit/{id}(id=${product.getId()})}">Редактировать товар</a>
-    <br>
-    <a th:href="@{/admin/product/delete/{id}(id=${product.getId()})}">Удалить товар</a>
-    <hr>
-    <br>
+<!--<div th:each="product : ${products}">-->
+<!--    <p th:text="'Наименование: ' + ${product.getTitle()}"></p>-->
+<!--    <p th:text="'Категория: ' + ${product.getCategory().getTitle()}"></p>-->
+<!--    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="100px">-->
+<!--    <br><br>-->
+<!--    <a th:href="@{/product/info/{id}(id=${product.getId()})}" class="btn btn-primary">Подробная информация о товаре</a>-->
+<!--    <br><br>-->
+<!--    <a th:href="@{/admin/product/edit/{id}(id=${product.getId()})}" class="btn btn-primary">Редактировать товар</a>-->
+<!--    <br><br>-->
+<!--    <a th:href="@{/admin/product/delete/{id}(id=${product.getId()})}" class="btn btn-primary">Удалить товар</a>-->
+<!--    <hr>-->
+<!--    <br>-->
+<!--</div>-->
+
+<div class="card" th:each="product : ${products}">
+    <div class="card-header">
+        <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="100px">
+    </div>
+    <div class="card-body">
+        <p class="card-title" th:text="'Наименование: ' + ${product.getTitle()}"></p>
+        <p class="card-text" th:text="'Цена: ' + ${product.getPrice()}"></p>
+        <p class="card-text" th:text="'Категория: ' + ${product.getCategory().getTitle()}"></p>
+        <br><br>
+        <a th:href="@{/product/info/{id}(id=${product.getId()})}" class="btn btn-primary">Подробная информация о товаре</a>
+        <br><br>
+        <a th:href="@{/admin/product/edit/{id}(id=${product.getId()})}" class="btn btn-primary">Редактировать товар</a>
+        <br><br>
+        <a th:href="@{/admin/product/delete/{id}(id=${product.getId()})}" class="btn btn-primary">Удалить товар</a>
+        <hr>
+        <br>
+    </div>
 </div>
+
 </body>
 </html>

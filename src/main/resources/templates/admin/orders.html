@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Список всех заказов</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <form method="POST" th:action="@{/logout}">
-  <button type="submit">Выйти из личного кабинета</button>
+  <button type="submit" class="btn btn-primary">Выйти из личного кабинета</button>
 </form>
 <br>
-<a href="/admin">Назад в личный кабинет</a>
+<a href="/admin" class="btn btn-primary">Назад в личный кабинет</a>
 <hr>
 <br>
 
@@ -17,7 +20,7 @@
 <form th:method="POST" th:action="@{/admin/order/search}">
   <label for="search">Поиск по номеру заказа</label>
   <input type="text" id="search" name="search" th:value="*{value_search}" width="200px" maxlength="4">
-  <input type="submit" value="Искать">
+  <input type="submit" value="Искать" class="btn btn-primary">
   <br>
 </form>
 <hr>

@@ -3,18 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Информация о товаре</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h3>Информация о товаре: </h3>
-<p th:text="'Наименование: ' + ${product.getTitle()}"></p>
-<p th:text="'Описание: ' + ${product.getDescription()}"></p>
-<p th:text="'Цена: ' + ${product.getPrice()}"></p>
-<p th:text="'Склад: ' + ${product.getWarehouse()}"></p>
-<p th:text="'Продавец: ' + ${product.getSeller()}"></p>
-<p th:text="'Категория: ' + ${product.getCategory().getTitle()}"></p>
-<div th:each="img : ${product.getImageList()}">
-    <img th:src="'/img/' + ${img.getFileName()}">
+<!--<h3>Информация о товаре: </h3>-->
+<!--<p th:text="'Наименование: ' + ${product.getTitle()}"></p>-->
+<!--<p th:text="'Описание: ' + ${product.getDescription()}"></p>-->
+<!--<p th:text="'Цена: ' + ${product.getPrice()}"></p>-->
+<!--<p th:text="'Cклад: ' + ${product.getWarehouse()}"></p>-->
+<!--<p th:text="'Продавец: ' + ${product.getSeller()}"></p>-->
+<!--<p th:text="'Категория: ' + ${product.getCategory().getName()}"></p>-->
+<!--<div th:each="img : ${product.getImageList()}">-->
+<!--    <img th:src="'/img/' + ${img.getFileName()}">-->
+<!--</div>-->
+
+<div class="card" style="width: 70%">
+    <div class="card-body">
+        <h3>Информация о товаре: </h3>
+        <p class="card-title" th:text="'Наименование: ' + ${product.getTitle()}"></p>
+        <p class="card-text" th:text="'Описание: ' + ${product.getDescription()}"></p>
+        <p class="card-text" th:text="'Цена: ' + ${product.getPrice()}"></p>
+        <p class="card-text" th:text="'Склад: ' + ${product.getWarehouse()}"></p>
+        <p class="card-text" th:text="'Продавец: ' + ${product.getSeller()}"></p>
+        <p class="card-text" th:text="'Категория: ' + ${product.getCategory().getTitle()}"></p>
+        <div th:each="img : ${product.getImageList()}">
+            <img th:src="'/img/' + ${img.getFileName()}">
+        </div>
+    </div>
 </div>
-<a href="javascript:history.back()">Назад</a>
+
+<a href="javascript:history.back()" class="btn btn-primary">Назад</a>
 </body>
 </html>

@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Личный кабинет администратора</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <h3>Личный кабинет администратора</h3>
 <hr>
 <form method="POST" th:action="@{/logout}">
-    <button type="submit">Выйти из личного кабинета</button>
+    <button type="submit" class="btn btn-primary">Выйти из личного кабинета</button>
 </form>
 <hr>
-<a href="admin/product">Просмотр, добавление и редактирование товаров</a>
-<br>
-<a href="admin/orders">Просмотр заказов</a>
-<br>
-<a href="admin/users">Посмотреть информацию о пользователях</a>
+<a href="admin/product" class="btn btn-primary">Просмотр, добавление и редактирование товаров</a>
+<br><br>
+<a href="admin/orders" class="btn btn-primary">Просмотр заказов</a>
+<br><br>
+<a href="admin/users" class="btn btn-primary">Посмотреть информацию о пользователях</a>
 <hr>
 </body>
 </html>

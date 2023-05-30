@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Корзина</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <h3>Корзина товаров</h3>
@@ -11,11 +14,11 @@
     <br>
     <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
     <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-    <a th:href="@{/cart/delete/{id}(id=${product.getId()})}">Удалить</a>
+    <a th:href="@{/cart/delete/{id}(id=${product.getId()})}" class="btn btn-primary">Удалить</a>
     <hr>
 </div>
 <h3 th:text="'Итоговая цена: ' + ${price}"></h3>
-<a href="/order/create">Оформить заказ</a>
-<a href="javascript:history.back()">Назад</a>
+<a href="/order/create" class="btn btn-primary">Оформить заказ</a>
+<a href="javascript:history.back()" class="btn btn-primary">Назад</a>
 </body>
 </html>

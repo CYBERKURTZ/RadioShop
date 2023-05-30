@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Заказы</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <h3>Заказы</h3>
@@ -15,6 +18,6 @@
     <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p>
     <p th:text="'Cтатус: ' + ${order.getStatus()}">
 </div>
-<a href="javascript:history.back()">Назад</a>
+<a href="javascript:history.back()" class="btn btn-primary">Назад</a>
 </body>
 </html>
